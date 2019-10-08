@@ -1,7 +1,7 @@
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 //Firebase
@@ -11,6 +11,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 //Environment
 import { environment } from 'src/environments/environment';
+
+//Angular Charts
+import { ChartsModule } from 'ng2-charts';
 
 //Components
 import { AppComponent } from './app.component';
@@ -29,6 +32,8 @@ import { AuthService } from './services/auth/auth.service';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducer';
+import { IngresoEgresoService } from './services/ingreso-egreso/ingreso-egreso.service';
+import { DetalleOrdenPipe } from './pipes/detalle-orden.pipe';
 
 @NgModule({
   declarations: [
@@ -41,12 +46,15 @@ import { appReducers } from './app.reducer';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    DetalleOrdenPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    ChartsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -57,7 +65,8 @@ import { appReducers } from './app.reducer';
     })
   ],
   providers: [
-    AuthService
+    AuthService,
+    IngresoEgresoService
   ],
   bootstrap: [AppComponent]
 })
