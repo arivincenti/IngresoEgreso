@@ -1,11 +1,23 @@
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { DashboardComponent } from "./dashboard.component";
+// import { AuthGuard } from "../services/auth.guard";
+import { dashboardRoutes } from './dashboard.routes';
 
-import { Routes } from '@angular/router';
-import { IngresoEgresoComponent } from '../ingreso-egreso/ingreso-egreso.component';
-import { EstadisticaComponent } from '../ingreso-egreso/estadistica/estadistica.component';
-import { DetalleComponent } from '../ingreso-egreso/detalle/detalle.component';
-
-export const dashboardRoutes: Routes = [
-  {path: '', component: EstadisticaComponent},
-  {path: 'ingreso-egreso', component: IngresoEgresoComponent},
-  {path: 'detalle', component: DetalleComponent}
+const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+    // canActivate: [AuthGuard],
+    children: dashboardRoutes
+  }
 ];
+
+@NgModule({
+  declarations: [],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+  exports: [RouterModule]
+})
+export class DashboardRoutingModule {}

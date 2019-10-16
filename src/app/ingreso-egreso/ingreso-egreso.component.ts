@@ -4,7 +4,7 @@ import { IngresoEgresoModel } from "../models/ingreso-egreso.model";
 import { IngresoEgresoService } from "../services/ingreso-egreso/ingreso-egreso.service";
 import Swal from "sweetalert2";
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
+import * as fromIngresoEgreso from './ingreso-egreso.reducer';
 import { Subscription } from 'rxjs';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
 
@@ -21,7 +21,7 @@ export class IngresoEgresoComponent implements OnInit {
 
   constructor(
     private _IngresoEgresoService: IngresoEgresoService,
-    private store: Store<AppState>
+    private store: Store<fromIngresoEgreso.AppState>
     ) {}
 
   ngOnInit() {
